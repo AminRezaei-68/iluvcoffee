@@ -6,10 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity/flavor.entity';
 
+class MockCoffeesService {}
+
 @Module({
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])], //.forFeature register typeorm in this child module
   controllers: [CoffeesController],
-  providers: [CoffeesService],
+  providers: [{ provide: CoffeesService, useValue: new MockCoffeesService() }],
   exports: [CoffeesService],
 })
 export class CoffeesModule {}
