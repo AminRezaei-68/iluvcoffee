@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { CoffeeRatingService } from './coffee-rating/coffee-rating.service';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { CoffeeRatingService } from './coffee-rating/coffee-rating.service';
       synchronize: true,
     }),
     CoffeeRatingModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService, CoffeeRatingService],
