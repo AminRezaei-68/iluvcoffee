@@ -59,18 +59,15 @@ export class CoffeesService {
   }
 
   async create(createCoffeeDto: CreateCoffeeDto) {
-    console.log('hit create 0');
     const flavors = await Promise.all(
       createCoffeeDto.flavors.map((name) => {
         return this.preloadFlavorByName(name);
       }),
     );
-    console.log('hit create 1');
     const coffee = this.coffeeRepository.create({
       ...createCoffeeDto,
       flavors,
     });
-    console.log('hit create2');
     return this.coffeeRepository.save(coffee);
   }
 
