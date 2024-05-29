@@ -29,7 +29,7 @@ export class CoffeesService {
     @InjectRepository(Flavor)
     private readonly flavorRepository: Repository<Flavor>,
     private readonly connection: Connection,
-    @Inject(COFFEE_BRANDS) coffeeBrands: string[], // its for able to use coffee brands and access that array that we passed in provider as a useValue
+    @Inject(COFFEE_BRANDS) coffeeBrands: string[], // its for able to use coffee brands and access the array that we passed in provider as a useValue.
   ) {
     console.log(coffeeBrands);
   }

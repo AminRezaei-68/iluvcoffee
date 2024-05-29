@@ -1,10 +1,12 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { DynamicModule, Module } from '@nestjs/common';
 import { ConnectionOptions, createConnection } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
 
 @Module({})
 export class DatabaseModule {
-  static register(options: ConnectionOptions): DynamicModule {
+  static register(options: DataSourceOptions): DynamicModule {
     return {
       module: DatabaseModule,
       providers: [

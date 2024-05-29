@@ -1,15 +1,17 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Module } from '@nestjs/common';
 import { CoffeeRatingService } from './coffee-rating.service';
-import { CoffeesModule } from 'src/coffees/coffees.module';
-import { DatabaseModule } from 'src/database/database.module';
+import { CoffeesModule } from '../coffees/coffees.module';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
   imports: [
     DatabaseModule.register({
       type: 'postgres',
       host: 'localhost',
-      password: 'password',
+      username: 'postgres',
+      password: 'pass123',
       port: 5432,
     }),
     CoffeesModule,
