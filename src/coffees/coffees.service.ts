@@ -22,7 +22,7 @@ import { Event } from 'src/events/entities/event.entity/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 // import { EntityManager} from 'typeorm'}
 
-@Injectable({})
+@Injectable({ scope: Scope.REQUEST })
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
