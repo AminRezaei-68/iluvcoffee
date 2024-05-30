@@ -22,7 +22,7 @@ import { Event } from 'src/events/entities/event.entity/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 // import { EntityManager} from 'typeorm'}
 
-@Injectable({ scope: Scope.DEFAULT })
+@Injectable({ scope: Scope.TRANSIENT })
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
@@ -32,7 +32,7 @@ export class CoffeesService {
     private readonly connection: Connection,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[], // its for able to use coffee brands and access the array that we passed in provider as a useValue.
   ) {
-    console.log(coffeeBrands);
+    console.log('CoffeesService instantiated');
   }
 
   findAll(paginationQuery: PaginationQueryDto) {
