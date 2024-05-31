@@ -16,22 +16,6 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot(),
     CoffeesModule,
     TypeOrmModule.forRoot({
-      // add new config for fix mirations
-      // TypeOrmModule.forRootAsync({
-      // imports: [ConfigModule],
-      // inject: [ConfigService],
-      // useFactory: (configService: ConfigService) => ({
-      //   type: 'postgres',
-      //   host: configService.get('POSTGRES_HOST'),
-      //   port: configService.get('POSTGRES_PORT'),
-      //   username: configService.get('POSTGRES_USER'),
-      //   password: configService.get('POSTGRES_PASSWORD'),
-      //   database: configService.get('POSTGRES_DB'),
-      //   entities: [],
-      //   autoLoadEntities: true,
-      // }),
-      // end of new config for migrations
-
       type: 'postgres',
       host: process.env.DATABASE_HOST,
       port: +process.env.DATABASE_PORT,
