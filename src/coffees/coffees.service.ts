@@ -37,7 +37,7 @@ export class CoffeesService {
     // @Inject(COFFEE_BRANDS) coffeeBrands: string[], // its for able to use coffee brands and access the array that we passed in provider as a useValue.
   ) {
     const databaseHost = this.configService.get<string>(
-      'DATABASE_HOST',
+      'database.host',
       'localhost',
     );
     console.log(databaseHost);
