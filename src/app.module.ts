@@ -10,16 +10,17 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { CoffeeRatingService } from './coffee-rating/coffee-rating.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
-import * as Joi from '@hapi/joi';
+// import * as Joi from '@hapi/joi';
+import appConfig from './config/app.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      validationSchema: Joi.object({
-        DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().default(5432),
-      }),
-    }),
+    // ConfigModule.forRoot({
+    //   validationSchema: Joi.object({
+    //     DATABASE_HOST: Joi.required(),
+    //     DATABASE_PORT: Joi.number().default(5432),
+    //   }),
+    ConfigModule.forRoot({ load: [appConfig] }),
     CoffeesModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
