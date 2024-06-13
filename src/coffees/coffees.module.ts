@@ -9,9 +9,13 @@ import { Flavor } from './entities/flavor.entity/flavor.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { Connection, DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event]), ConfigModule], //.forFeature register typeorm in this child module
+  imports: [
+    TypeOrmModule.forFeature([Coffee, Flavor, Event]),
+    ConfigModule.forFeature(coffeesConfig),
+  ], //.forFeature register typeorm in this child module
   controllers: [CoffeesController],
   providers: [
     CoffeesService,
