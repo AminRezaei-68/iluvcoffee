@@ -19,7 +19,6 @@ async function bootstrap() {
     }),
   ); // for validate inputs
   // app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalGuards(new ApiKeyGuard());
   await app.listen(3000);
 }
 bootstrap();
