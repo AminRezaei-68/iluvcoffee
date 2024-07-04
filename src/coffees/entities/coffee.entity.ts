@@ -8,6 +8,7 @@ import {
   ManyToMany,
 } from 'typeorm';
 import { Flavor } from './flavor.entity/flavor.entity';
+
 @Entity() // sql table name === name off belowe class in lowercase (coffee) we can rename the table class with @Entity('new name')
 export class Coffee {
   @PrimaryGeneratedColumn() // this decorator define id as the primary column and auto increment the value
