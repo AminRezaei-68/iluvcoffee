@@ -36,7 +36,7 @@ export class CoffeesController {
   @Get()
   // findAll(@Query() paginationQuery: PaginationQueryDto) {
   async findAll(
-    @Protocol() protocol: string,
+    @Protocol('https') protocol: string,
     @Query() paginationQuery: PaginationQueryDto,
   ) {
     console.log(protocol);
