@@ -22,6 +22,7 @@ import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
 import { Public } from 'src/common/decorators/public.decorator';
 import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { ApiForbiddenResponse } from '@nestjs/swagger';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -32,6 +33,7 @@ export class CoffeesController {
     console.log('coffees controller created.');
   }
 
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
   // findAll(@Query() paginationQuery: PaginationQueryDto) {
