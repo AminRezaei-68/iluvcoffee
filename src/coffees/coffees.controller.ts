@@ -22,8 +22,9 @@ import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
 import { Public } from 'src/common/decorators/public.decorator';
 import { Protocol } from 'src/common/decorators/protocol.decorator';
-import { ApiForbiddenResponse } from '@nestjs/swagger';
+import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {
   constructor(
@@ -36,13 +37,13 @@ export class CoffeesController {
   // @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
-  findAll(@Query() paginationQuery: PaginationQueryDto) {
-    // async findAll(
-    // @Protocol('https') protocol: string,
-    // @Query() paginationQuery: PaginationQueryDto,
-    // ) {
-    // console.log(protocol);
-    // async findAll(@Query() paginationQuery: PaginationQueryDto) {
+  // findAll(@Query() paginationQuery: PaginationQueryDto) {
+  // async findAll(
+  // @Protocol('https') protocol: string,
+  // @Query() paginationQuery: PaginationQueryDto,
+  // ) {
+  // console.log(protocol);
+  async findAll(@Query() paginationQuery: PaginationQueryDto) {
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     return this.coffeesService.findAll(paginationQuery);
   }
