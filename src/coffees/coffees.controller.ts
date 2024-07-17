@@ -33,15 +33,15 @@ export class CoffeesController {
     console.log('coffees controller created.');
   }
 
-  @ApiForbiddenResponse({ description: 'Forbidden.' })
+  // @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
-  // findAll(@Query() paginationQuery: PaginationQueryDto) {
-  async findAll(
-    @Protocol('https') protocol: string,
-    @Query() paginationQuery: PaginationQueryDto,
-  ) {
-    console.log(protocol);
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
+    // async findAll(
+    // @Protocol('https') protocol: string,
+    // @Query() paginationQuery: PaginationQueryDto,
+    // ) {
+    // console.log(protocol);
     // async findAll(@Query() paginationQuery: PaginationQueryDto) {
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     return this.coffeesService.findAll(paginationQuery);
