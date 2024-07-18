@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
-import { Coffee } from '../coffee.entity';
+import { Coffee } from './coffee.entity';
 
 @Entity()
 export class Flavor {

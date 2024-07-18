@@ -7,7 +7,7 @@ import {
   JoinTable,
   ManyToMany,
 } from 'typeorm';
-import { Flavor } from './flavor.entity/flavor.entity';
+import { Flavor } from './flavor.entity';
 
 @Entity() // sql table name === name off belowe class in lowercase (coffee) we can rename the table class with @Entity('new name')
 export class Coffee {
