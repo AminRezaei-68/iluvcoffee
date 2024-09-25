@@ -49,4 +49,10 @@ describe('CoffeesService', () => {
     // expect(service).toBeDefined();
     expect(true);
   });
+
+  describe('findOne', () => {
+    describe('when coffee with ID exists', () => {
+      it('should return the coffee object', async () => {});
+    });
+  });
 });
