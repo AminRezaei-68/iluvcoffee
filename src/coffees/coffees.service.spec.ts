@@ -54,5 +54,9 @@ describe('CoffeesService', () => {
     describe('when coffee with ID exists', () => {
       it('should return the coffee object', async () => {});
     });
+
+    describe('otherwise', () => {
+      it('should throw the "NotFoundException"', async () => {});
+    });
   });
 });
