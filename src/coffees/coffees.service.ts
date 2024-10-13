@@ -58,10 +58,8 @@ export class CoffeesService {
       relations: ['flavors'],
     });
     if (!coffee) {
-      throw new HttpException(
-        `Coffee id ${id} not found.`,
-        HttpStatus.NOT_FOUND,
-      );
+      // throw new HttpException(`Coffee #${id} not found.`, HttpStatus.NOT_FOUND);
+      throw new NotFoundException(`Coffee #${id} not found.`);
     }
     return coffee;
   }
