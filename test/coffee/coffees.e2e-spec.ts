@@ -99,7 +99,30 @@ describe('[Feature] Coffees - /coffees', () => {
         );
       });
   });
-  it.todo('Update one [PATCH /:id]');
+  it('Update one [PATCH /:id]', () => {
+    const updatedCoffee = {
+      ...coffee,
+      name: 'Updated Coffee Name', // تغییر نام قهوه
+    };
+
+    return request(app.getHttpServer())
+      .patch(`/coffees/${coffeeId}`)
+      .send(updatedCoffee)
+      .expect(HttpStatus.OK)
+      .then(({ body }) => {
+        expect(body).toEqual(
+          expect.objectContaining({
+            id: coffeeId,
+            ...updatedCoffee,
+            flavors: expect.arrayContaining(
+              updatedCoffee.flavors.map((name) =>
+                expect.objectContaining({ name }),
+              ),
+            ),
+          }),
+        );
+      });
+  });
   it.todo('Delete one [DELETE /:id]');
 
   afterAll(async () => {
