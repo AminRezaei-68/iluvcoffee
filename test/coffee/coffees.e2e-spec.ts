@@ -14,6 +14,7 @@ describe('[Feature] Coffees - /coffees', () => {
     flavors: ['chocolate', 'vanilla'],
   };
   let app: INestApplication;
+  let coffeeId: number;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -58,11 +59,29 @@ describe('[Feature] Coffees - /coffees', () => {
             coffee.flavors.map((name) => expect.objectContaining({ name })),
           ),
         });
+        coffeeId = body.id;
         expect(body).toEqual(expectedCoffee);
       });
   });
   it('Get all [GET /]', () => {
-    return request(app.getHttpServer()).get('/coffees').expect(HttpStatus.OK);
+    return request(app.getHttpServer())
+      .get('/coffees')
+      .expect(HttpStatus.OK)
+      .then(({ body }) => {
+        expect(Array.isArray(body)).toBe(true); // بررسی اینکه پاسخ یک آرایه است
+        expect(body).toEqual(
+          expect.arrayContaining([
+            // بررسی وجود قهوه ایجاد شده
+            expect.objectContaining({
+              id: coffeeId,
+              ...coffee,
+              flavors: expect.arrayContaining(
+                coffee.flavors.map((name) => expect.objectContaining({ name })),
+              ),
+            }),
+          ]),
+        );
+      });
   });
   it.todo('Get one [GET /:id]');
   it.todo('Update one [PATCH /:id]');
