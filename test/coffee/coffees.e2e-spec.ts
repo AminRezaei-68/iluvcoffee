@@ -83,7 +83,22 @@ describe('[Feature] Coffees - /coffees', () => {
         );
       });
   });
-  it.todo('Get one [GET /:id]');
+  it('Get one [GET /:id]', () => {
+    return request(app.getHttpServer())
+      .get(`/coffees/${coffeeId}`)
+      .expect(HttpStatus.OK)
+      .then(({ body }) => {
+        expect(body).toEqual(
+          expect.objectContaining({
+            id: coffeeId,
+            ...coffee,
+            flavors: expect.arrayContaining(
+              coffee.flavors.map((name) => expect.objectContaining({ name })),
+            ),
+          }),
+        );
+      });
+  });
   it.todo('Update one [PATCH /:id]');
   it.todo('Delete one [DELETE /:id]');
 
