@@ -1,10 +1,16 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { TestingModule, Test } from '@nestjs/testing';
 import { CoffeesModule } from '../../src/coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 describe('[Feature] Coffees - /coffees', () => {
+  const coffee = {
+    name: 'Shipwerk Roast',
+    brand: 'Buddy Brew',
+    flavors: ['chocolate', 'vanilla'],
+  };
   let app: INestApplication;
 
   beforeAll(async () => {
