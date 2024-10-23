@@ -1,9 +1,12 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { TestingModule, Test } from '@nestjs/testing';
 import { CoffeesModule } from '../../src/coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+// import { request } from 'http';
+import * as request from 'supertest';
+import { CreateCoffeeDto } from 'src/coffees/dto/create-coffee.dto/create-coffee.dto';
 
 describe('[Feature] Coffees - /coffees', () => {
   const coffee = {
@@ -44,7 +47,12 @@ describe('[Feature] Coffees - /coffees', () => {
     await app.init();
   });
 
-  it.todo('Create [POST /]');
+  it('Create [POST /]', () => {
+    return request(app.getHttpServer())
+      .post('/coffees')
+      .send(coffee as CreateCoffeeDto)
+      .expect(HttpStatus.CREATED);
+  });
   it.todo('Get all [GET /]');
   it.todo('Get one [GET /:id]');
   it.todo('Update one [PATCH /:id]');
