@@ -4,7 +4,6 @@ import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { TestingModule, Test } from '@nestjs/testing';
 import { CoffeesModule } from '../../src/coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { request } from 'http';
 import * as request from 'supertest';
 import { CreateCoffeeDto } from 'src/coffees/dto/create-coffee.dto/create-coffee.dto';
 
@@ -51,7 +50,16 @@ describe('[Feature] Coffees - /coffees', () => {
     return request(app.getHttpServer())
       .post('/coffees')
       .send(coffee as CreateCoffeeDto)
-      .expect(HttpStatus.CREATED);
+      .expect(HttpStatus.CREATED)
+      .then(({ body }) => {
+        const expectedCoffee = expect.objectContaining({
+          ...coffee,
+          flavors: expect.arrayContaining(
+            coffee.flavors.map((name) => expect.objectContaining({ name })),
+          ),
+        });
+        expect(body).toEqual(expectedCoffee);
+      });
   });
   it.todo('Get all [GET /]');
   it.todo('Get one [GET /:id]');
