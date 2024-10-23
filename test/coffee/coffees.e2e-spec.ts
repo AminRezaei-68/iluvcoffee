@@ -123,7 +123,11 @@ describe('[Feature] Coffees - /coffees', () => {
         );
       });
   });
-  it.todo('Delete one [DELETE /:id]');
+  it('Delete one [DELETE /:id]', () => {
+    return request(app.getHttpServer())
+      .delete(`/coffees/${coffeeId}`) // استفاده از شناسه قهوه ایجاد شده
+      .expect(HttpStatus.OK);
+  });
 
   afterAll(async () => {
     await app.close();
