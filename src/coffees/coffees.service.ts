@@ -49,7 +49,7 @@ export class CoffeesService {
     return existingCoffee;
   }
 
-  async remove(id: string) {
+  remove(id: string) {
     // const coffee = await this.findOne(id);
     // return coffee.remove();
     return this.coffeeModel.findByIdAndDelete(id);
