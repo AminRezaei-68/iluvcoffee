@@ -62,5 +62,23 @@ export class CoffeesService {
   async recommendCoffee(coffee: Coffee) {
     const session = await this.connection.startSession();
     session.startTransaction();
+
+    try {
+      coffee.recommendations++;
+
+      const recommendEvent = new this.eventModel({
+        name: 'recommend_coffee',
+        type: 'coffee',
+        payload: { coffeeId: coffee.id },
+      });
+      await recommendEvent.save({ session });
+      await coffee.save({ session });
+
+      await session.commitTransaction();
+    } catch (err) {
+      await session.abortTransaction();
+    } finally {
+      session.endSession();
+    }
   }
 }
