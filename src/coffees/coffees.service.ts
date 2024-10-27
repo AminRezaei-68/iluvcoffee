@@ -58,4 +58,9 @@ export class CoffeesService {
     // return coffee.remove();
     return this.coffeeModel.findByIdAndDelete(id);
   }
+
+  async recommendCoffee(coffee: Coffee) {
+    const session = await this.connection.startSession();
+    session.startTransaction();
+  }
 }
