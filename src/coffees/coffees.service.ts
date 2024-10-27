@@ -23,7 +23,7 @@ export class CoffeesService {
   }
 
   async findOne(id: string) {
-    const coffee = await this.coffeeModel.find({ _id: id }).exec();
+    const coffee = await this.coffeeModel.findOne({ _id: id }).exec();
     if (!coffee) {
       throw new HttpException(
         `Coffee id ${id} not found.`,
